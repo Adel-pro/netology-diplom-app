@@ -76,9 +76,9 @@ jobs:
           mkdir -p $HOME/.kube/
       - name: Authenticate to Kubernetes cluster
         env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          KUBERNETES_CONFIG: ${{ secrets.KUBERNETES_CONFIG }}
         run: |
-          echo "${KUBE_CONFIG_DATA}" | base64 --decode > ${HOME}/.kube/config
+          echo "${KUBERNETES_CONFIG}" | base64 --decode > ${HOME}/.kube/config
       - name: Apply Kubernetes manifests
         run: |
           kubectl apply -f ~/app-deployment.yml
